@@ -517,3 +517,8 @@ FriendlyEats.prototype.renderPrice = function(price) {
     }
     return el;
 }
+
+FriendlyEats.prototype.replaceElement = function(parent, context) {
+    parent.innerHTML = '';
+    parent.append(content);
+}
