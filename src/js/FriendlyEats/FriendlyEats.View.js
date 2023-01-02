@@ -379,3 +379,11 @@ FriendlyEats.prototype.viewRestaurant = function(id) {
         console.warn('Error rendering page', err);
     });
 }
+
+FriendlyEats.prototype.renderTemplate = function(id, data) {
+    var template = this.templates[id];
+    var el = template.cloneNode(true);
+    el.removeAttribute('hidden');
+    this.render(el, data);
+    return el;
+}
