@@ -495,3 +495,17 @@ FriendlyEats.prototype.getDeepItem = function(obj, path) {
 
     return obj;
 }
+
+FriendlyEats.prototype.renderRating = function(rating) {
+    var el = this.renderTemplate('rating', {});
+    for (var r = 0; r < 5; r += 1) {
+        var star;
+        if (r < Math.floor(rating)) {
+            star = this.renderTemplate('star-icon', {});
+        } else {
+            star = this.renderTemplate('star-border-icon', {});
+        }
+        el.append(star);
+    }
+    return el;
+}
