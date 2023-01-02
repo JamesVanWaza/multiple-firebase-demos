@@ -14,7 +14,8 @@ module.exports = {
         navigo: './src/js/navigo.min.js',
         FriendlyEats: './src/js/FriendlyEats/FriendlyEats.js',
         FriendlyEatsView: './src/js/FriendlyEats/FriendlyEats.View.js',
-        FriendlyEatsMock: './src/js/FriendlyEats/FriendlyEats.Mock.js'
+        FriendlyEatsMock: './src/js/FriendlyEats/FriendlyEats.Mock.js',
+        FriendlyEatsData: './src/js/FriendlyEats/FriendlyEats.Data.js'
     },
     output: {
         path: path.resolve(__dirname, "public"),
