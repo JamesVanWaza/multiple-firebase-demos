@@ -483,3 +483,7 @@ FriendlyEats.prototype.render = function(el, data) {
         that.useModifier(el, selector, modifier);
     });
 }
+
+FriendlyEats.prototype.useModifier = function(el, selector, modifier) {
+    el.querySelectorAll('[' + selector + ']').forEach(modifier);
+}
