@@ -37,3 +37,39 @@ function FriendlyEats() {
         console.log(err);
     });
 }
+
+/** Initialixed the router for the FriendlyEats app */
+FriendlyEats.prototype.initRouter = function() {
+    this.router = new Navigo();
+
+    var that = this;
+    this.router
+        .on({
+            '/': function() {
+                that.updateQuery(that.filters);
+            }
+        })
+        .on({
+            '/setup': function() {
+                that.viewSetup();
+            }
+        })
+        .on({
+            '/restaurants/*': function() {
+                var path = that.getCleanPath(document.location.pathname);
+                var id = path.split('/')[2];
+                that.viewRestaurant(id);
+            }
+        })
+        .resolve();
+
+    firebase
+        .firestore()
+        .collection('restaurants')
+        .limit(1)
+        .onSnapshot(function(snapshot) {
+            if (snapshot.empty) {
+                that.router.navigate('/setup');
+            }
+        });
+}
