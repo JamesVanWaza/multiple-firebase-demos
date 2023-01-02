@@ -387,3 +387,99 @@ FriendlyEats.prototype.renderTemplate = function(id, data) {
     this.render(el, data);
     return el;
 }
+
+FriendlyEats.prototype.render = function(el, data) {
+    if (!data) {
+        return;
+    }
+
+    var that = this;
+    var modifiers = {
+        'data-fir-foreach': function(tel) {
+            var field = tel.getAttribute('data-fir-foreach');
+            var values = that.getDeepItem(data, field);
+
+            values.forEach(function(value, index) {
+                var cloneTel = tel.cloneNode(true);
+                tel.parentNode.append(cloneTel);
+
+                Object.keys(modifiers).forEach(function(selector) {
+                    var children = Array.prototype.slice.call(
+                        cloneTel.querySelectorAll('[' + selector + ']')
+                    );
+                    children.push(cloneTel);
+                    children.forEach(function(childEl) {
+                        var currentVal = childEl.getAttribute(selector);
+
+                        if (!currentVal) {
+                            return;
+                        }
+
+                        childEl.setAttribute(
+                            selector,
+                            currentVal.replace('~', field + '/' + index)
+                        );
+                    });
+                });
+            });
+
+            tel.parentNode.removeChild(tel);
+        },
+        'data-fir-content': function(tel) {
+            var field = tel.getAttribute('data-fir-content');
+            tel.innerText = that.getDeepItem(data, field);
+        },
+        'data-fir-click': function(tel) {
+            tel.addEventListener('click', function() {
+                var field = tel.getAttribute('data-fir-if')
+                that.getDeepItem(data, field)();
+            });
+        },
+        'data-fir-if': function(tel) {
+            var field = tel.getAttribute('data-fir-if');
+            if (!that.getDeepItem(data, field)) {
+                tel.style.display = 'none';
+            }
+        },
+        'data-fir-if-not': function(tel) {
+            var field = tel.getAttribute('data-fir-if-not');
+            if (that.getDeepItem(data, field)) {
+                tel.style.display = 'none';
+            }
+        },
+        'data-fir-attr': function(tel) {
+            var chunks = tel.getAttribute('data-fir-attr').split(':');
+            var attr = chunks[0];
+            var field = chunks[1];
+            tel.setAttribute(attr, that.getDeepItem(data, field));
+        },
+        'data-fir-style': function(tel) {
+            var chunks = tel.getAttribute('data-fir-style').split(':');
+            var attr = chunks[0];
+            var field = chunks[1];
+            var value = that.getDeepItem(data, field);
+
+            if (attr.toLowerCase() === 'backgroundimage') {
+                value = 'url(' + value + ')';
+            }
+
+            tel.style[attr] = value;
+        }
+    };
+
+    var preModifiers = ['data-fir-foreach'];
+
+    preModifiers.forEach(function(selector) {
+        var modifier = modifiers[selector];
+        that.useModifier(el, selector, modifier);
+    });
+
+    Object.keys(modifiers).forEach(function(selector) {
+        if (preModifiers.indexOf(selector) !== -1) {
+            return;
+        }
+
+        var modifier = modifiers[selector];
+        that.useModifier(el, selector, modifier);
+    });
+}
