@@ -11,14 +11,13 @@ import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 // import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC2fSgvBKn_kfTA-YA_oNSnuv2T9IFJ1LY",
-    authDomain: "startbootstrap-dostesting.firebaseapp.com",
-    databaseURL: "https://startbootstrap-dostesting.firebaseio.com",
-    projectId: "startbootstrap-dostesting",
-    storageBucket: "startbootstrap-dostesting.appspot.com",
-    messagingSenderId: "1027318006182",
-    appId: "1:1027318006182:web:22de08214e99fee3170f67",
-    measurementId: "G-6YYHGGL30F"
+    apiKey: "AIzaSyAAzU-ciZhoIphf9oVSZ5H9yXfnC5_62po",
+    authDomain: "friendlyeats-web-demo-mar-2021.firebaseapp.com",
+    projectId: "friendlyeats-web-demo-mar-2021",
+    storageBucket: "friendlyeats-web-demo-mar-2021.appspot.com",
+    messagingSenderId: "896188255323",
+    appId: "1:896188255323:web:79ea8b17c685f4c5ee837e",
+    measurementId: "G-BTQDH211GT"
 };
 
 // Initialize Firebase
