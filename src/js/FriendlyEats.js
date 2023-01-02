@@ -73,3 +73,21 @@ FriendlyEats.prototype.initRouter = function() {
             }
         });
 }
+
+FriendlyEats.prototype.getCleanPath = function(dirtyPath) {
+    if (dirtyPath.startsWith('/index.html')) {
+        return dirtyPath.split('/').slice(1).join('/');
+    } else {
+        return dirtyPath;
+    }
+}
+
+FriendlyEats.prototype.getFirebaseConfig = function() {
+    return firebase.app().options;
+}
+
+FriendlyEats.prototype.getRandomItem = function(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// START HERE
