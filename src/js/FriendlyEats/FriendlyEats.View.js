@@ -15,7 +15,7 @@
  */
 'use strict';
 
-import { deepCopy } from "@firebase/util";
+import { deepCopy, getModularInstance } from "@firebase/util";
 
 FriendlyEats.prototype.initTemplates = function() {
     this.templates = {};
@@ -313,4 +313,69 @@ FriendlyEats.prototype.updateQuery = function(filters) {
     }
 
     this.viewList(filters, query_description);
+}
+
+FriendlyEats.prototype.viewRestaurant = function(id) {
+    var sectionHeaderEl;
+
+    var that = this;
+    return this.getRestaurant(id)
+        .then(function(doc) {
+            var data = doc.data();
+            var dialog = that.dialogs.add_review;
+
+            data.show_add_review = function() {
+                // Reset the state before showing the dialog
+                dialog.root_.querySelector('#text').value = '';
+                dialog.root_.querySelectorAll('.star-input i').forEach(function(el) {
+                    el.innerText = 'star_border';
+                });
+
+                dialog.show();
+            }
+
+            sectionHeaderEl = that.renderTemplate('restaurant-header', data);
+            sectionHeaderEl
+                .querySelector('.rating')
+                .append(that.renderRating(data.avgRating));
+
+            sectionHeaderEl
+                .querySelector('.price')
+                .append(that.renderPrice(data.price));
+            return doc.ref.collection('ratings').orderBy('timestamp', 'desc').get();
+        }).
+    then(function(ratings) {
+        var mainEl;
+
+        if (ratings.size) {
+            mainEl = that.renderTemplate('main');
+
+            ratings.forEach(function(rating) {
+                var data = rating.data();
+                var el = that.renderTemplate('review-card', data);
+                el.querySelector('.rating').append(that.renderRating(data.rating));
+                mainEl.querySelector('#cards').append(el);
+            });
+        } else {
+            mainEl = that.renderTemplate('no-ratings', {
+                add_mock_data: function() {
+                    that.addMockRatings(id).then(function() {
+                        that.rerender();
+                    })
+                }
+            });
+        }
+
+        var headerEl = that.renderTemplate('header-base', {
+            hasSectionHeader: true
+        });
+
+        that.replaceElement(document.querySelector('.header'), sectionHeaderEl);
+        that.replaceElement(document.querySelector('main'), mainEl);
+    }).
+    then(function() {
+        that.router.updatePageLinks();
+    }).catch(function(err) {
+        console.warn('Error rendering page', err);
+    });
 }
