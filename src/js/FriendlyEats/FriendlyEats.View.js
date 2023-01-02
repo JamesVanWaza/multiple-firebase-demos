@@ -522,3 +522,7 @@ FriendlyEats.prototype.replaceElement = function(parent, context) {
     parent.innerHTML = '';
     parent.append(content);
 }
+
+FriendlyEats.prototype.rerender = function() {
+    this.router.navigate(document.location.pathname + '?' + new Date().getTime());
+}
