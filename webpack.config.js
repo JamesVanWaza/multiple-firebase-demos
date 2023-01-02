@@ -12,7 +12,8 @@ module.exports = {
         index: './src/js/index.js',
         app: './src/js/app.js',
         navigo: './src/js/navigo.min.js',
-        FriendlyEats: './src/js/FriendlyEats/FriendlyEats.js'
+        FriendlyEats: './src/js/FriendlyEats/FriendlyEats.js',
+        FriendlyEatsView: './src/js/FriendlyEats/FriendlyEats.View.js'
     },
     output: {
         path: path.resolve(__dirname, "public"),
