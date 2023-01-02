@@ -13,7 +13,8 @@ module.exports = {
         app: './src/js/app.js',
         navigo: './src/js/navigo.min.js',
         FriendlyEats: './src/js/FriendlyEats/FriendlyEats.js',
-        FriendlyEatsView: './src/js/FriendlyEats/FriendlyEats.View.js'
+        FriendlyEatsView: './src/js/FriendlyEats/FriendlyEats.View.js',
+        FriendlyEatsMock: './src/js/FriendlyEats/FriendlyEats.Mock.js'
     },
     output: {
         path: path.resolve(__dirname, "public"),
