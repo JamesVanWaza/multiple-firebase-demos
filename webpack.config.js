@@ -97,7 +97,7 @@ module.exports = {
         }),
         // Favicon
         new FaviconsWebpackPlugin({
-            logo: './src/images/S-FaviconBackgroundColor@4x.png'
+            logo: './src/images/favicon.ico'
         })
     ]
 };
