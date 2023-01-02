@@ -10,7 +10,8 @@ module.exports = {
     mode: 'development',
     entry: {
         index: './src/js/index.js',
-        app: './src/js/app.js'
+        app: './src/js/app.js',
+        navigo: './src/js/navigo.min.js'
     },
     output: {
         path: path.resolve(__dirname, "public"),
