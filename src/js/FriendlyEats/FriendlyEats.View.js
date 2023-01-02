@@ -487,3 +487,11 @@ FriendlyEats.prototype.render = function(el, data) {
 FriendlyEats.prototype.useModifier = function(el, selector, modifier) {
     el.querySelectorAll('[' + selector + ']').forEach(modifier);
 }
+
+FriendlyEats.prototype.getDeepItem = function(obj, path) {
+    path.split('/').forEach(function(chunk) {
+        obj = obj[chunk];
+    });
+
+    return obj;
+}
