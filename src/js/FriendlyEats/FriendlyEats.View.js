@@ -128,3 +128,43 @@ FriendlyEats.prototype.viewList = function(filters, filter_description) {
 
     mdc.autoInit();
 }
+
+FriendlyEats.prototype.viewSetup = function() {
+    var headerEl = this.renderTemplate('header-base', {
+        hasSectionHeader: false
+    });
+
+    var config = this.getFirebaseConfig();
+    var noRestaurantsEl = this.renderTemplate('no-restaurants', config);
+
+    var button = noRestaurantsEl.querySelector('#add_mock_data');
+    var addingMockData = false;
+
+    var that = this;
+    button.addEventListener('click', function(event) {
+        if (addingMockData) {
+            return;
+        }
+        addingMockData = true;
+
+        event.target.style.opacity = '0.4';
+        event.target.innerText = 'Please wait...';
+
+        that.addMockRestaurants().then(function() {
+            that.rerender();
+        });
+    });
+
+    this.replaceElement(document.querySelector('.header'), headerEl);
+    this.replaceElement(document.querySelector('main'), noRestaurantsEl);
+
+    firebase
+        .firestore()
+        .collection('restaurants')
+        .limit(1)
+        .onSnapshot(function(snapshot) {
+            if (snapshot.size && !addingMockData) {
+                that.router.navigate('/');
+            }
+        });
+}
