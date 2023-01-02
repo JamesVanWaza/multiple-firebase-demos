@@ -509,3 +509,11 @@ FriendlyEats.prototype.renderRating = function(rating) {
     }
     return el;
 }
+
+FriendlyEats.prototype.renderPrice = function(price) {
+    var el = this.renderTemplate('price', {});
+    for (var r = 0; r < price; r += 1) {
+        el.append('$');
+    }
+    return el;
+}
