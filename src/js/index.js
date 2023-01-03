@@ -1,5 +1,21 @@
 import '../scss/style.scss';
 
+// FireEats Image
+import Icon from '../images/guy_fireats.png';
+
+function component() {
+    const element = document.createElement('div');
+
+    const myIcon = new Image();
+    myIcon.src = Icon;
+
+    element.appendChild(myIcon);
+
+    return element;
+}
+
+document.body.appendChild(component());
+
 /** Navigation Menu */
 // const toggle = document.querySelector(".toggle");
 // const menu = document.querySelector(".menu");
