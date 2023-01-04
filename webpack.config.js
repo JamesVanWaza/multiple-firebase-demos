@@ -19,7 +19,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "public"),
-        filename: "[name].js",
+        filename: "[name].bundle.js",
     },
     target: 'web',
     devServer: {
