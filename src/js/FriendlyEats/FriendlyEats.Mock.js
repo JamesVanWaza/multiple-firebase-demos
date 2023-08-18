@@ -16,7 +16,7 @@
 'use strict';
 
 /** Adds a set of mock Restaurants to the Cloud Firestore */
-FriendlyEats.prototype.addMockRestaurants = function() {
+FriendlyEats.prototype.addMockRestaurants = function () {
     var promises = [];
 
     for (var i = 0; i < 20; i++) {
@@ -51,7 +51,7 @@ FriendlyEats.prototype.addMockRestaurants = function() {
 }
 
 /** Adds a set of mock Ratings to the given Restaurant */
-FriendlyEats.prototype.addMockRatings = function(restaurantID) {
+FriendlyEats.prototype.addMockRatings = function (restaurantID) {
     var ratingPromises = [];
     for (var r = 0; r < 5 * Math.random(); r++) {
         var rating = this.data.ratings[
