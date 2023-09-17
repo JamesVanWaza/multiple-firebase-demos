@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
-import { getAuth, signInWithRedirect, GithubAuthProvider, signOut, onAuthStateChanged, connectAuthEmulator } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 // import { getFunctions } from "firebase/functions";
 // import { getMessaging } from "firebase/messaging";
 // import { getPerformance } from "firebase/performance";
@@ -32,7 +32,7 @@ const auth = getAuth(app);
 // Firestore
 const db = getFirestore(app);
 
-// Functions    
+// Functions
 // const functions = getFunctions(app);
 
 // Messaging
