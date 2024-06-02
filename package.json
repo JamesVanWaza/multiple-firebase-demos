@@ -1,6 +1,6 @@
 {
     "name": "friendlyeats-web",
-    "version": "2024.2.0",
+    "version": "2024.2.1",
     "description": "Testing the Firebase Friendly-EatsWeb Demo",
     "main": "index.js",
     "dependencies": {
@@ -15,7 +15,7 @@
         "extract-loader": "^5.1.0",
         "favicons-webpack-plugin": "^6.0.1",
         "html-webpack-plugin": "^5.6.0",
-        "sass": "1.77.3",
+        "sass": "1.77.4",
         "sass-loader": "^14.2.1",
         "style-loader": "^4.0.0",
         "webpack": "^5.91.0",
