@@ -2,9 +2,7 @@ node_modules/
 yarn.lock
 .DS_Store
 mysqli-connect.php
-public/
 .firebase/hosting.cHVibGlj.cache
-.firebaserc
 firestore.indexes.json
 firestore.rules
 functions/.eslintrc.json
