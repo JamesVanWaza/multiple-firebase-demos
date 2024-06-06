@@ -1,6 +1,6 @@
 {
     "name": "friendlyeats-web",
-    "version": "2024.2.1",
+    "version": "2024.2.2",
     "description": "Testing the Firebase Friendly-EatsWeb Demo",
     "main": "index.js",
     "dependencies": {
@@ -8,8 +8,8 @@
         "firebase": "^10.12.2"
     },
     "devDependencies": {
-        "@babel/core": "7.24.6",
-        "@babel/preset-env": "7.24.6",
+        "@babel/core": "7.24.7",
+        "@babel/preset-env": "7.24.7",
         "babel-loader": "9.1.3",
         "css-loader": "^7.1.2",
         "extract-loader": "^5.1.0",
